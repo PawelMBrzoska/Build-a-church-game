@@ -1,0 +1,11 @@
+finger
+chalice
+stone
+sickle
+hammer
+throne
+well
+sword
+nackle
+ring
+skull
