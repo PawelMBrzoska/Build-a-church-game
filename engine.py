@@ -81,14 +81,14 @@ def Artifact_reset(DB):
 
 def Start(DB):
   while True:
-    print("  ")
-    print('What you want to do?')
-    print("1 - Reset")
-    print("2 - add a Saint")
-    print("3 - add an Artifact")
-    print("4 - print Saints")
-    print("5 - print Artifacts")
-    print("  ")
+    print("""
+    What you want to do?')
+    1 - Reset")
+    2 - add a Saint")
+    3 - add an Artifact")
+    4 - print Saints")
+    5 - print Artifacts
+    """)
     choice = int(input('Choose: '))
     print("  ")
     if choice == 1:
