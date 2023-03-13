@@ -1,9 +1,13 @@
 import sqlite3
 import pandas as pd
 import random
+from tkinter import *
+from tkinter import ttk
+import os
+import sys
 
-# robienie tabeli
-# def 
+#Setting directory
+os.chdir(os.path.dirname(sys.argv[0]))
 
 def Saint_add(DB):
   #Choosing a name for a new Saint
@@ -79,32 +83,32 @@ def Artifact_reset(DB):
   conn.commit() 
   conn.close()
 
-def Start(DB):
-  while True:
-    print("""
-    What you want to do?')
-    1 - Reset")
-    2 - add a Saint")
-    3 - add an Artifact")
-    4 - print Saints")
-    5 - print Artifacts
-    """)
-    choice = int(input('Choose: '))
-    print("  ")
-    if choice == 1:
-      Saints_reset(DB)
-      Artifact_reset(DB)
-      print("The game has been reseted")
-    if choice == 2: 
-      Saint_add(DB)
-      print("done!")
-    if choice == 3:
-      Artifact_add(DB)
-      print("done!")
-    if choice == 4:
-      Saints_print(DB)
-    if choice == 5:
-      Artifact_print(DB)
+#def Start(DB):
+#  while True:
+#    print("""
+#    What you want to do?')
+#    1 - Reset")
+#    2 - add a Saint")
+#    3 - add an Artifact")
+#    4 - print Saints")
+#    5 - print Artifacts
+#    """)
+#    choice = int(input('Choose: '))
+#    print("  ")
+#    if choice == 1:
+#      Saints_reset(DB)
+#      Artifact_reset(DB)
+#      print("The game has been reseted")
+#    if choice == 2: 
+#      Saint_add(DB)
+#      print("done!")
+#    if choice == 3:
+#      Artifact_add(DB)
+#      print("done!")
+#    if choice == 4:
+#      Saints_print(DB)
+#    if choice == 5:
+#      Artifact_print(DB)
 
 
 def get_ready(DB):
@@ -114,10 +118,41 @@ def get_ready(DB):
     Saint_add(DB)
   for i in range(2):
     Artifact_add(DB)
-  Start('data/ex1.db')
+  Run_game('data/ex1.db')
   
 
+def Run_game(DB):
+  Window = Tk()
   
+  def click():
+    print("test")
+
+  def click1():
+    Artifact_add(DB)
+    print("added a new artifact")
+
+  def click2():
+    Saint_add(DB)
+    print("added a new Saint")
+
+  def click3():
+    Saints_print(DB)
+  
+  def click4():
+    Artifact_print(DB)
+
+  frm = ttk.Frame(Window, padding=10)
+  frm.grid()
+
+  ttk.Label(frm, text="Test").grid(column=1, row=1)
+
+  ttk.Button(frm, text="Add an artifact", command=click1).grid(column=1, row=2)
+  ttk.Button(frm, text="Add a Saint", command=click2).grid(column=1, row=3)
+  ttk.Button(frm, text="Quit", command=Window.destroy).grid(column=2, row=1)
+  ttk.Button(frm, text="Print Saints", command=click3).grid(column=1, row=4)
+  ttk.Button(frm, text="Print Artifacts", command=click4).grid(column=1, row=5)
+
+  Window.mainloop()
 
 if __name__ == '__main__':
   get_ready('data/ex1.db')
